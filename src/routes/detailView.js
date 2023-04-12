@@ -13,7 +13,6 @@ import { Nav } from "react-bootstrap";
 //     // unmount
 //   }
 // }
-
 const DetailView = (props) => {
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -25,20 +24,23 @@ const DetailView = (props) => {
     };
   }, []);
 
-  let [number, setNumber] = useState(" ");
   let [view, setView] = useState(true);
   let [tab, setTab] = useState(0);
+  let [fadeView, setFadeView] = useState("");
   useEffect(() => {
-    if (isNaN(number) === true) {
-      alert("Only Text input");
-    }
-  }, [number]);
+    setTimeout(() => {
+      setFadeView("end");
+    }, 200);
+    return () => {
+      setFadeView("");
+    };
+  }, []);
 
   let { id } = useParams();
   let productId = props.shoes.find((x) => x.id == id);
 
   return (
-    <div className="container">
+    <div className={"container start" + fadeView}>
       <div className="row">
         <div className="col-md-6">
           {view ? (
@@ -104,12 +106,22 @@ const DetailView = (props) => {
 };
 
 const TabContent = (props) => {
+  let [fade, setFade] = useState("");
+  useEffect(() => {
+    setTimeout(() => {
+      setFade("end");
+    }, 10);
+
+    return () => {
+      setFade("");
+    };
+  }, [props.tab]);
   if (props.tab === 0) {
-    return <div>0</div>;
+    return <div className={"start " + fade}>0</div>;
   } else if (props.tab === 1) {
-    return <div>1</div>;
+    return <div className={"start " + fade}>1</div>;
   } else if (props.tab === 2) {
-    return <div>2</div>;
+    return <div className={"start " + fade}>2</div>;
   }
 };
 
