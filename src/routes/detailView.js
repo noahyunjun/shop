@@ -16,15 +16,20 @@ import { useParams } from "react-router-dom";
 const DetailView = (props) => {
   useEffect(() => {
     let timer = setTimeout(() => {
-      console.log(2);
       setView(false);
     }, 2000);
     return () => {
       // useEffect가 실행되기 전에 실행되는 코드 부분 입니다.
       clearTimeout(timer);
-      console.log(1);
     };
   }, []);
+
+  let [number, setNumber] = useState(" ");
+  useEffect(() => {
+    if (isNaN(number) === true) {
+      alert("Only Text input");
+    }
+  }, [number]);
 
   let [view, setView] = useState(true);
 
@@ -40,10 +45,7 @@ const DetailView = (props) => {
           ) : (
             ""
           )}
-          <img
-            src="https://codingapple1.github.io/shop/shoes1.jpg"
-            width="100%"
-          />
+          <img src={productId.src} width="100%" />
         </div>
         <div className="col-md-6">
           <h4 className="pt-5">{productId.title}</h4>
@@ -52,6 +54,15 @@ const DetailView = (props) => {
 
           <button className="btn btn-danger">주문하기</button>
         </div>
+      </div>
+      <div>
+        <input
+          type="text"
+          placeholder="Only Number"
+          onChange={(e) => {
+            setNumber(e.target.value);
+          }}
+        />
       </div>
     </div>
   );
