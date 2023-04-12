@@ -49,15 +49,19 @@ function App() {
               ></div>
               <div className="container">
                 <div className="row">
-                  {shoes.map((shoes, index) => {
-                    return <Product shoes={shoes} index={index} />;
+                  {shoes.map((shoes, id) => {
+                    return <Product shoes={shoes} id={id} />;
                   })}
                 </div>
               </div>
             </>
           }
         />
-        <Route path="/detail/:id" element={<DetailView shoes={shoes} />} />
+
+        <Route
+          path="/detail/:id"
+          element={<DetailView shoes={shoes} />}
+        ></Route>
         {/* nested route ; about관련한 접근은 이렇게 about 내부로 빼서 작업하면 좋음  상위 컴포넌트와 하위 컴포넌트 두개가 동시에 보인다*/}
         {/* 하위 컴포넌트가 상위 컴포넌트에 어디 들어갈지를 작성해줘야 한다. */}
         <Route path="/event" element={<Event />}>
