@@ -8,17 +8,18 @@ import Product from "./component/card";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import DetailView from "./routes/detailView";
 import Event from "./component/event";
-
+import axios from "axios";
 function App() {
   let [shoes, setShoes] = useState(shoesData);
 
   let navigate = useNavigate();
+  let [ClickedMore, setClickMore] = useState(2);
 
   return (
     <div className="App">
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">CakeShop</Navbar.Brand>
+          <Navbar.Brand href="/">ShoseShop</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link
               onClick={() => {
@@ -53,11 +54,39 @@ function App() {
                     return <Product shoes={shoes} id={id} />;
                   })}
                 </div>
+                <button
+                  className="btn btn-success"
+                  onClick={() => {
+                    alert("Loading data");
+                    if (ClickedMore < 4) {
+                      axios
+                        .get(
+                          "https://codingapple1.github.io/shop/data" +
+                            ClickedMore +
+                            ".json"
+                        )
+                        .then((result) => {
+                          let copyShoes = [...shoes, ...result.data];
+                          setShoes(copyShoes);
+                          setClickMore(ClickedMore + 1);
+                        })
+                        .catch(() => {
+                          alert("fail data download");
+                        });
+                    } else alert("No more data in server");
+                    //  post, get 요청 방식
+                    // Promise.all([axios.get("/url"), axios.get("/url2")]).then(
+                    //   () => {}
+                    // );
+                    // axios.post("/set", { name: "ham" });
+                  }}
+                >
+                  Show More
+                </button>
               </div>
             </>
           }
         />
-
         <Route
           path="/detail/:id"
           element={<DetailView shoes={shoes} />}
