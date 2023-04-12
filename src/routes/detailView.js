@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Nav } from "react-bootstrap";
 
 // class Details extends React.Component {
 //   componentDidMount() {
@@ -25,13 +26,13 @@ const DetailView = (props) => {
   }, []);
 
   let [number, setNumber] = useState(" ");
+  let [view, setView] = useState(true);
+  let [tab, setTab] = useState(0);
   useEffect(() => {
     if (isNaN(number) === true) {
       alert("Only Text input");
     }
   }, [number]);
-
-  let [view, setView] = useState(true);
 
   let { id } = useParams();
   let productId = props.shoes.find((x) => x.id == id);
@@ -55,7 +56,41 @@ const DetailView = (props) => {
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>
-      <div>
+      <br />
+      <Nav variant="tabs" defaultActiveKey="link0">
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link0"
+            onClick={() => {
+              setTab(0);
+            }}
+          >
+            버튼0
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link1"
+            onClick={() => {
+              setTab(1);
+            }}
+          >
+            버튼1
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link2"
+            onClick={() => {
+              setTab(2);
+            }}
+          >
+            버튼2
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabContent tab={tab}></TabContent>
+      {/* <div>
         <input
           type="text"
           placeholder="Only Number"
@@ -63,9 +98,19 @@ const DetailView = (props) => {
             setNumber(e.target.value);
           }}
         />
-      </div>
+      </div> */}
     </div>
   );
+};
+
+const TabContent = (props) => {
+  if (props.tab === 0) {
+    return <div>0</div>;
+  } else if (props.tab === 1) {
+    return <div>1</div>;
+  } else if (props.tab === 2) {
+    return <div>2</div>;
+  }
 };
 
 export default DetailView;
