@@ -5,10 +5,11 @@ import backImage from "./img/bg.png";
 import { useState } from "react";
 import shoesData from "./component/data";
 import Product from "./component/card";
-import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
-import DetailView from "./routes/detailView";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import DetailView from "./routes/DetailView";
 import Event from "./component/event";
 import axios from "axios";
+import Cart from "./routes/Cart";
 function App() {
   let [shoes, setShoes] = useState(shoesData);
 
@@ -91,6 +92,8 @@ function App() {
           path="/detail/:id"
           element={<DetailView shoes={shoes} />}
         ></Route>
+        <Route path="/cart" element={<div></div>}></Route>
+
         {/* nested route ; about관련한 접근은 이렇게 about 내부로 빼서 작업하면 좋음  상위 컴포넌트와 하위 컴포넌트 두개가 동시에 보인다*/}
         {/* 하위 컴포넌트가 상위 컴포넌트에 어디 들어갈지를 작성해줘야 한다. */}
         <Route path="/event" element={<Event />}>
