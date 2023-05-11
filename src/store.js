@@ -1,10 +1,7 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import user from "./store/userSlice";
 
 //useState와 비슷하다고 생각하면 됨
-let user = createSlice({
-  name: "user", //state 이름
-  initialState: "Ham hyeon jun", //state 값
-});
 
 let stock = createSlice({
   name: "stock", //state 이름
@@ -17,6 +14,12 @@ let products = createSlice({
     { id: 0, name: "White and Black", count: 2 },
     { id: 2, name: "Grey Yordan", count: 1 },
   ],
+
+  reducers: {
+    plusCount(state, action) {
+      state[action.payload].count += 1;
+    },
+  },
 });
 
 export default configureStore({
@@ -26,3 +29,7 @@ export default configureStore({
     products: products.reducer,
   },
 });
+
+export let { plusCount } = products.actions;
+
+//js distrcturing
