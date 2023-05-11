@@ -92,7 +92,6 @@ function App() {
           path="/detail/:id"
           element={<DetailView shoes={shoes} />}
         ></Route>
-        <Route path="/cart" element={<div></div>}></Route>
 
         {/* nested route ; about관련한 접근은 이렇게 about 내부로 빼서 작업하면 좋음  상위 컴포넌트와 하위 컴포넌트 두개가 동시에 보인다*/}
         {/* 하위 컴포넌트가 상위 컴포넌트에 어디 들어갈지를 작성해줘야 한다. */}
@@ -101,6 +100,7 @@ function App() {
           <Route path="two" element={<p>생일기념 쿠폰받기</p>} />
         </Route>
 
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<div>404 Not Found</div>}></Route>
       </Routes>
     </div>
