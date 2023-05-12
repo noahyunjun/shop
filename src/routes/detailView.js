@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
+import { addItem } from "../store";
+import { useDispatch } from "react-redux";
 
 // class Details extends React.Component {
 //   componentDidMount() {
@@ -13,6 +15,7 @@ import { Nav } from "react-bootstrap";
 //     // unmount
 //   }
 // }
+
 const DetailView = (props) => {
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -38,7 +41,7 @@ const DetailView = (props) => {
 
   let { id } = useParams();
   let productId = props.shoes.find((x) => x.id == id);
-
+  let dispatch = useDispatch();
   return (
     <div className={"container start" + fadeView}>
       <div className="row">
@@ -55,7 +58,14 @@ const DetailView = (props) => {
           <p>{productId.content}</p>
           <p>{productId.price}</p>
 
-          <button className="btn btn-danger">주문하기</button>
+          <button
+            className="btn btn-danger"
+            onClick={() => {
+              dispatch(addItem({ id: 1, name: "Red kint", count: 1 }));
+            }}
+          >
+            주문하기
+          </button>
         </div>
       </div>
       <br />
