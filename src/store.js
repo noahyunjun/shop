@@ -17,14 +17,15 @@ let products = createSlice({
 
   reducers: {
     plusCount(state, action) {
-      let number = state.findIndex((a) => {
-        // 조건식에 맞는 것들 출력
-        return a.id == action.payload;
-      });
+      let number = state.findIndex((a) => a.id === action.payload); // 조건식에 맞는 것들 출력
       state[number].count += 1;
     },
     addItem(state, action) {
       state.push(action.payload);
+    },
+    deleteItem(state, action) {
+      let itemNum = state.findIndex((a) => a.id === action.payload);
+      state.splice(itemNum, 1);
     },
   },
 });
@@ -37,6 +38,6 @@ export default configureStore({
   },
 });
 
-export let { plusCount, addItem } = products.actions;
+export let { plusCount, addItem, deleteItem } = products.actions;
 
 //js distrcturing

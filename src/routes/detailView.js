@@ -42,6 +42,7 @@ const DetailView = (props) => {
   let { id } = useParams();
   let productId = props.shoes.find((x) => x.id == id);
   let dispatch = useDispatch();
+
   return (
     <div className={"container start" + fadeView}>
       <div className="row">
