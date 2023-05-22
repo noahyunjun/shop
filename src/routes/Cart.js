@@ -6,6 +6,7 @@ import { plusCount, deleteItem } from "../store";
 function Cart() {
   //getting redux store
   let state = useSelector((state) => state);
+
   let dispatch = useDispatch(); //store.js에 요청을 보내주는 함수다
 
   return (
@@ -37,20 +38,12 @@ function Cart() {
                 <td>{products.name}</td>
                 <td>{products.count}</td>
                 <td>
-                  <button
-                    onClick={() => {
-                      dispatch(plusCount(products.id));
-                    }}
-                  >
+                  <button onClick={() => dispatch(plusCount(products.id))}>
                     +
                   </button>
                 </td>
                 <td>
-                  <button
-                    onClick={() => {
-                      dispatch(deleteItem(products.id));
-                    }}
-                  >
+                  <button onClick={() => dispatch(deleteItem(products.id))}>
                     Del
                   </button>
                 </td>
