@@ -46,6 +46,7 @@ const DetailView = (props) => {
   let watchedItem = localStorage.getItem("watched");
   watchedItem = [id];
   console.log(watchedItem);
+  ƒ;
   localStorage.setItem(watchedItem, JSON.stringify(watchedItem));
   return (
     <div className={"container start" + fadeView}>
