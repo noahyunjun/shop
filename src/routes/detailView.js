@@ -43,6 +43,10 @@ const DetailView = (props) => {
   let productId = props.shoes.find((x) => x.id == id);
   let dispatch = useDispatch();
 
+  let watchedItem = localStorage.getItem("watched");
+  watchedItem = [id];
+  console.log(watchedItem);
+  localStorage.setItem(watchedItem, JSON.stringify(watchedItem));
   return (
     <div className={"container start" + fadeView}>
       <div className="row">

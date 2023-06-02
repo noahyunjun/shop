@@ -4,7 +4,6 @@ const Products = (props) => {
   let navigate = useNavigate();
   let id = props.id;
   let realId = id + 1;
-  console.log(id + 1);
   return (
     <div
       onClick={() => {
