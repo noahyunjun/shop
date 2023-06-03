@@ -39,15 +39,26 @@ const DetailView = (props) => {
     };
   }, []);
 
+  //localStorage Part
+  useEffect(() => {
+    let legacyStorage = JSON.parse(localStorage.getItem("watched"));
+
+    const storageData = [...legacyStorage, productId.id];
+    const set = new Set(storageData);
+    const storeData = [...set];
+
+    localStorage.setItem("watched", JSON.stringify(storeData));
+    // const setStorageData = new Set(storageData);
+    // console.log(setStorageData);
+
+    //최근에 본 아이템 스토리지에 저장
+    // localStorage.setItem("watched", JSON.parse([setStorageData]));
+  }, []);
+
   let { id } = useParams();
   let productId = props.shoes.find((x) => x.id == id);
   let dispatch = useDispatch();
 
-  let watchedItem = localStorage.getItem("watched");
-  watchedItem = [id];
-  console.log(watchedItem);
-  ƒ;
-  localStorage.setItem(watchedItem, JSON.stringify(watchedItem));
   return (
     <div className={"container start" + fadeView}>
       <div className="row">
