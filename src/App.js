@@ -5,6 +5,7 @@ import backImage from "./img/bg.png";
 import { useEffect, useState } from "react";
 import shoesData from "./component/data";
 import Product from "./component/card";
+import LateProducts from "./component/lateProducts";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import DetailView from "./routes/DetailView";
 import Event from "./component/event";
@@ -14,8 +15,10 @@ function App() {
   useEffect(() => {
     localStorage.setItem("watched", JSON.stringify([]));
   }, []);
+  let shoes2 = JSON.parse(localStorage.getItem("watched"));
 
   let [shoes, setShoes] = useState(shoesData);
+  let [lateShoes] = useState(shoes2);
 
   let navigate = useNavigate();
   let [ClickedMore, setClickMore] = useState(2);
@@ -62,14 +65,21 @@ function App() {
               ></div>
               <div className="container">
                 <div className="row">
-                  {shoes.map((shoes, id) => {
-                    return <Product shoes={shoes} id={id} />;
-                  })}
+                  <div>
+                    최근에 본 항목
+                    {lateShoes.map((id) => {
+                      return <LateProducts id={id} />;
+                    })}
+                  </div>
+                  <div>
+                    {shoes.map((shoes, id) => {
+                      return <Product shoes={shoes} id={id} />;
+                    })}
+                  </div>
                 </div>
                 <button
                   className="btn btn-success"
                   onClick={() => {
-                    alert("Loading data");
                     if (ClickedMore < 4) {
                       axios
                         .get(

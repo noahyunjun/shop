@@ -48,12 +48,7 @@ const DetailView = (props) => {
     const storeData = [...set];
 
     localStorage.setItem("watched", JSON.stringify(storeData));
-    // const setStorageData = new Set(storageData);
-    // console.log(setStorageData);
-
-    //최근에 본 아이템 스토리지에 저장
-    // localStorage.setItem("watched", JSON.parse([setStorageData]));
-  }, []);
+  });
 
   let { id } = useParams();
   let productId = props.shoes.find((x) => x.id == id);
