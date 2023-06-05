@@ -12,8 +12,11 @@ import Event from "./component/event";
 import axios from "axios";
 import Cart from "./routes/Cart";
 function App() {
+  // redux-persist 라는 Lib쓰면 모든 state를 localStorage에 자동 저장하게 할수 있다.
   useEffect(() => {
-    localStorage.setItem("watched", JSON.stringify([]));
+    if (localStorage.getItem("watched") === null) {
+      localStorage.setItem("watched", JSON.stringify([]));
+    }
   }, []);
   let shoes2 = JSON.parse(localStorage.getItem("watched"));
 
