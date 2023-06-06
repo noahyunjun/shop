@@ -11,6 +11,7 @@ import DetailView from "./routes/DetailView";
 import Event from "./component/event";
 import axios from "axios";
 import Cart from "./routes/Cart";
+import { useQuery } from "@tanstack/react-query";
 function App() {
   // redux-persist 라는 Lib쓰면 모든 state를 localStorage에 자동 저장하게 할수 있다.
   useEffect(() => {
@@ -25,6 +26,18 @@ function App() {
 
   let navigate = useNavigate();
   let [ClickedMore, setClickMore] = useState(2);
+
+  let userName = useQuery(["userName"], () => {
+    axios.get("https://codingapple1.github.io/userdata.json").then((a) => {
+      return a.data;
+    });
+  });
+
+  // userName.data -> ajax 요청이 완료 된 뒤 data 값
+  // userName.isLoading -> 요청 중일시에 true 값
+  // userName.error -> error 발생시 true 값
+  // useQuery 사용.
+  // 장점1. 성공/실패/로딩중 쉽게 파악 가능
 
   return (
     <div className="App">
@@ -53,6 +66,11 @@ function App() {
             >
               Cart
             </Nav.Link>
+          </Nav>
+          <Nav className="mx-auto">
+            {userName.isLoading && "loading"}
+            {userName.error && "error"}
+            {userName.data && userName.name}
           </Nav>
         </Container>
       </Navbar>
