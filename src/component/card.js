@@ -6,6 +6,7 @@ const Products = (props) => {
   let realId = id + 1;
   return (
     <div
+      className="col"
       onClick={() => {
         navigate(`/detail/` + id);
       }}

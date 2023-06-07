@@ -5,7 +5,8 @@ const LateProducts = (props) => {
   let id = props.id;
   let realId = id + 1;
   return (
-    <span
+    <div
+      className="col"
       onClick={() => {
         navigate(`/detail/` + id);
       }}
@@ -15,7 +16,7 @@ const LateProducts = (props) => {
         alt=""
         width="40%"
       />
-    </span>
+    </div>
   );
 };
 

@@ -86,13 +86,14 @@ function App() {
               ></div>
               <div className="container">
                 <div className="row">
-                  <div>
+                  <div className="row">
                     최근에 본 항목
                     {lateShoes.map((id) => {
                       return <LateProducts id={id} />;
                     })}
                   </div>
-                  <div>
+
+                  <div className="row row-cols-3">
                     {shoes.map((shoes, id) => {
                       return <Product shoes={shoes} id={id} />;
                     })}
