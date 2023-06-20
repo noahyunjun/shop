@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { addItem } from "../store";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 // class Details extends React.Component {
 //   componentDidMount() {
@@ -78,6 +79,11 @@ const DetailView = (props) => {
           >
             주문하기
           </button>
+        </div>
+        <div className="col-md-6">
+          <Link to="/">
+            <button>home</button>
+          </Link>
         </div>
       </div>
       <br />
