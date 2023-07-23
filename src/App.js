@@ -10,6 +10,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Event from "./component/event";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import Calender from "./calender/Calender";
 // 메인 페이지에서 바로 쓰이는 컴포넌트가 아니기에, 로드 속도를 높이기 위해서 lazy하게 가져오려 함
 // import DetailView from "./routes/DetailView";
 // import Cart from "./routes/Cart";
@@ -104,6 +105,9 @@ function App() {
                       {shoes.map((shoes, id) => {
                         return <Product shoes={shoes} id={id} />;
                       })}
+                    </div>
+                    <div>
+                      <Calender />
                     </div>
                   </div>
                   <button
