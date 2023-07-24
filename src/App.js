@@ -106,7 +106,7 @@ function App() {
                         return <Product shoes={shoes} id={id} />;
                       })}
                     </div>
-                    <div>
+                    <div className="btn-success">
                       <Calender />
                     </div>
                   </div>
