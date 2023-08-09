@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Icon } from "@iconify/react";
+// import { Icon } from "@iconify/react";
 import { format } from "date-fns";
 const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
   return (
@@ -12,8 +12,8 @@ const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
         </span>
       </div>
       <div className="col col-end">
-        <Icon icon="bi:arrow-left-circle-fill" onClick={prevMonth} />
-        <Icon icon="bi:arrow-right-circle-fill" onClick={nextMonth} />
+        {/* <Icon icon="bi:arrow-left-circle-fill" onClick={prevMonth} />
+        <Icon icon="bi:arrow-right-circle-fill" onClick={nextMonth} /> */}
       </div>
     </div>
   );
